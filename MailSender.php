@@ -13,7 +13,7 @@ class MailSender {
      */
     function send_mail($to, $from, $subject, $message) {
         $headers = $from . "\r\n";
-        return mail($to, $subject, $message, $headers);
+        return mail($to, $subject, $this->prepare_message($message), $headers);
     }
 
     /**
