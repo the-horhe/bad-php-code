@@ -2,7 +2,7 @@
 
 namespace App;
 
-class TextManager
+class Text_Manager
 {
 
     public function clearString($string)
@@ -16,7 +16,7 @@ class TextManager
         $array = array('ru', 'en');
         foreach ($array as $item) {
             $adresPerevodov = 'http://127.0.0.1/messages.' . $item . '.yml';
-            $result = file_get_contents($adresPerevodov);
+            $result = @file_get_contents($adresPerevodov);
 
             $fp = fopen('translations/messages' . $item . 'yml');
             fwrite($fp, $result);
@@ -25,9 +25,9 @@ class TextManager
 
     public function getTranslationFile($string)
     {
-        $filename = "translations/messages." . $string . '.yml';
-        $handle = fopen($filename, "r");
-        $contents = fread($handle, filesize($filename));
+        $f = "translations/messages." . $string . '.yml';
+        $handle = fopen($f, "r");
+        $contents = fread($handle, filesize($f));
         fclose($handle);
         return $contents;
     }
